@@ -5,11 +5,18 @@ VisualStudioVersion = 16.0.31410.357
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{4DCAA259-FEC4-4760-B73B-EDE114030C75}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NKS.Customers.API", "NKS.Customers.API\NKS.Customers.API.csproj", "{FF83BF85-6AC2-4C46-8AF8-3AEC53E68671}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NKS.Customers.API", "NKS.Customers.API\NKS.Customers.API.csproj", "{FF83BF85-6AC2-4C46-8AF8-3AEC53E68671}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NKS.Customers.Core", "NKS.Customers.Core\NKS.Customers.Core.csproj", "{A0A17816-857D-4EEF-90A1-8DA9EC7EABBC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NKS.Customers.Core", "NKS.Customers.Core\NKS.Customers.Core.csproj", "{A0A17816-857D-4EEF-90A1-8DA9EC7EABBC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NKS.Customers.Infrastructure", "NKS.Customers.Infrastructure\NKS.Customers.Infrastructure.csproj", "{345D1122-5B6A-41B4-8690-9275BF41DACE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NKS.Customers.Infrastructure", "NKS.Customers.Infrastructure\NKS.Customers.Infrastructure.csproj", "{345D1122-5B6A-41B4-8690-9275BF41DACE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{F9C129CB-07C2-490A-BF63-70AC17B29692}"
+	ProjectSection(SolutionItems) = preProject
+		Notes.html = Notes.html
+	EndProjectSection
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "NKS.Customers.SQLDatabase", "NKS.Customers.SQLDatabase\NKS.Customers.SQLDatabase.sqlproj", "{B98681A0-F634-4729-9AD7-57F67326D61C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,6 +36,12 @@ Global
 		{345D1122-5B6A-41B4-8690-9275BF41DACE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{345D1122-5B6A-41B4-8690-9275BF41DACE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{345D1122-5B6A-41B4-8690-9275BF41DACE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B98681A0-F634-4729-9AD7-57F67326D61C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B98681A0-F634-4729-9AD7-57F67326D61C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B98681A0-F634-4729-9AD7-57F67326D61C}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{B98681A0-F634-4729-9AD7-57F67326D61C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B98681A0-F634-4729-9AD7-57F67326D61C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B98681A0-F634-4729-9AD7-57F67326D61C}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
