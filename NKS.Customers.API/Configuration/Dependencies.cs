@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
@@ -54,6 +55,7 @@ namespace NKS.Customers.API.Configuration
                     Version = $"v{swaggerConfig.Version}",
                     Description = swaggerConfig.Description
                 });
+                options.ResolveConflictingActions(apiDescriptions => apiDescriptions.First()); //This line
                 options.EnableAnnotations();
                 options.AddSecurityDefinition("basic", new OpenApiSecurityScheme
                 {

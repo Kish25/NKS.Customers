@@ -11,5 +11,6 @@ namespace NKS.Customers.Core.Entities
         public string County     { get; set; }
         public string Country    { get; set; }
         public string Postcode   { get; set; }
+        public bool   IsCurrent  { get; set; }
     }
 }
