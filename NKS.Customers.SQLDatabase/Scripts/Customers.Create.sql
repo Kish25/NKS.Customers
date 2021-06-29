@@ -1,34 +1,4 @@
 ﻿
---		Table : Titles		 
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-
-IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'Dbo.Titles') AND type in (N'U'))
-	Begin
-		DROP TABLE Dbo.Titles
-	End
-GO
-
-CREATE TABLE Dbo.Titles 
-(
-	Id Int Identity(1,1) NOT NULL ,
-	Name varchar(25) NOT NULL ,									-- Customer, Supplier, Staff, 
-    DateAdded datetime2 NOT NULL DEFAULT SYSUTCDATETIME(),		-- Create Default and bind for easy reference
-    DateModified datetime2  NOT NULL DEFAULT SYSUTCDATETIME(),
-	CONSTRAINT PK_Titles  PRIMARY KEY (ID)
-)
-PRINT 'Adding default data to Titles Table'
-INSERT INTO Dbo.Titles (Name) VALUES ('Not Defined')
-INSERT INTO Dbo.Titles (Name) VALUES ('Mr')
-INSERT INTO Dbo.Titles (Name) VALUES ('Miss')
-INSERT INTO Dbo.Titles (Name) VALUES ('Mrs')
-INSERT INTO Dbo.Titles (Name) VALUES ('Ms')
-INSERT INTO Dbo.Titles (Name) VALUES ('Inf')
-INSERT INTO Dbo.Titles (Name) VALUES ('Mast')
-
-
 --		Table : Addresses		
 
 IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'Dbo.Addresses') AND type in (N'U'))
@@ -95,13 +65,14 @@ GO
 
 CREATE TABLE Dbo.Customers
 (
-	Id bigint Identity(1,1) NOT NULL,
-    TitleID Int NOT NULL Default(0), 
+	Id UniqueIdentifier  NOT NULL,
+    Title varchar(10) NOT NULL Default(''), 
     Forename nVarchar(50) NOT NULL , 
     Initials nVarchar(10) NOT NULL Default('') , 
     Surname nVarchar(50) NOT NULL , 
-    Email nVarchar(50) NOT NULL , 
-    MobileNumber nVarchar(20) NOT NULL , 
+    Email nVarchar(100) NOT NULL , 
+    HashedEmail Varbinary(200) NOT NULL , 
+    MobileNumber Varchar(20) NOT NULL , 
     DateofBirth Date NULL, 
 	Status smallint NOT NULL Default(0) ,			-- 0-: Inactive, 1- Active 2-Block, 4-Inactive 8-No Comms, 16- BadReviews
 	EffectiveFrom datetime2 NOT NULL DEFAULT SYSUTCDATETIME(),	-- Create Default and bind for easy reference
@@ -110,8 +81,6 @@ CREATE TABLE Dbo.Customers
 )
 GO
 
-CREATE INDEX IX_Customers_Title ON Dbo.Customers (TitleID)
-GO
 CREATE INDEX IX_Customers_Forename ON Dbo.Customers (Forename)
 GO
 ALTER TABLE Dbo.Customers ADD PERIOD FOR SYSTEM_TIME (EffectiveFrom,EffectiveUntil);

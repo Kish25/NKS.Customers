@@ -20,5 +20,3 @@ CREATE INDEX IX_Customers_Forename ON Dbo.Customers (Forename)
 GO
 ALTER TABLE Dbo.Customers ADD PERIOD FOR SYSTEM_TIME (EffectiveFrom,EffectiveUntil);
 GO
-ALTER TABLE Dbo.Customers SET (SYSTEM_VERSIONING = ON (HISTORY_TABLE = Dbo.CustomersHistory));
-GO
