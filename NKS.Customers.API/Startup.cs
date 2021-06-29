@@ -23,6 +23,10 @@ namespace NKS.Customers.API
         {
             Log.Information("Configure services");
             services.Configure<Swagger>(Configuration.GetSection("SwaggerConfiguration"));
+            //services.AddSingleton(provider => new MapperConfiguration
+            //(
+            //    cfg => cfg.AddProfile(new DatabaseProfile())
+            //).CreateMapper());
 
             services
                 .AddApiConfiguration(Configuration)
@@ -48,6 +52,7 @@ namespace NKS.Customers.API
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapDefaultControllerRoute();
                 endpoints.MapControllers();
             });
         }

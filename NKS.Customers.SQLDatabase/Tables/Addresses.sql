@@ -28,5 +28,3 @@ CREATE INDEX IX_Addresses_HouseNumber ON Dbo.Addresses (HouseNumber)
 GO
 ALTER TABLE Dbo.Addresses ADD PERIOD FOR SYSTEM_TIME (EffectiveFrom,EffectiveUntil);
 GO
-ALTER TABLE Dbo.Addresses SET (SYSTEM_VERSIONING = ON (HISTORY_TABLE = Dbo.AddressesHistory));
-GO
