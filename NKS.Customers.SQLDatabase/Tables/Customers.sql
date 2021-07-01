@@ -1,5 +1,4 @@
-﻿
-CREATE TABLE Dbo.Customers
+﻿CREATE TABLE Dbo.Customers
 (
 	Id bigint Identity(1,1) NOT NULL,
     TitleID Int NOT NULL Default(0), 
@@ -17,6 +16,4 @@ GO
 CREATE INDEX IX_Customers_Title ON Dbo.Customers (TitleID)
 GO
 CREATE INDEX IX_Customers_Forename ON Dbo.Customers (Forename)
-GO
-ALTER TABLE Dbo.Customers ADD PERIOD FOR SYSTEM_TIME (EffectiveFrom,EffectiveUntil);
 GO

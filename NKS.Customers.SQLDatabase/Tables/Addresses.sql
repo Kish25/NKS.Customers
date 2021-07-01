@@ -26,5 +26,3 @@ CREATE INDEX IX_Addresses_Postcode ON Dbo.Addresses (PostCode)
 GO
 CREATE INDEX IX_Addresses_HouseNumber ON Dbo.Addresses (HouseNumber)
 GO
-ALTER TABLE Dbo.Addresses ADD PERIOD FOR SYSTEM_TIME (EffectiveFrom,EffectiveUntil);
-GO
