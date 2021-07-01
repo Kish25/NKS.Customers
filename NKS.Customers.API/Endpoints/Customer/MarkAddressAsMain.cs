@@ -15,7 +15,6 @@ namespace NKS.Customers.API.Endpoints.Customer
             _addressRepository = addressRepository;
         }
 
-        /// /{addressId}
         [HttpPut("/Customers/{id}/MarkAsPrimary")]
         [ProducesResponseType(typeof(string), 200)]
         [ProducesResponseType(typeof(string), 400)]
