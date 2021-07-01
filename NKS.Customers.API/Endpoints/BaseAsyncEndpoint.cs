@@ -14,10 +14,4 @@ namespace NKS.Customers.API.Endpoints
   {
     public abstract Task<ActionResult<TResponse>> HandleAsync();
   }
-
-  //[ApiController]
-  //public abstract class BaseAsyncEndpoint<Guid, TResponse> : Controller
-  //{
-  //  public abstract Task<ActionResult<TResponse>> HandleAsync(Guid id);
-  //}
 }

@@ -117,34 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ChangeName" xml:space="preserve">
-    <value>UPDATE Customers SET Forename=@Forename, Initials=@Initials, Surname=@Surname  WHERE Id = @Id</value>
-  </data>
   <data name="Create" xml:space="preserve">
-    <value>INSERT INTO dbo.Customers (Id,Title,Forename,Initials,Surname,Email,HashedEmail,MobileNumber,DateofBirth,Status) VALUES
-           (@Id,@Title,@Forename,@Initials,@Surname,@Email,@HashedEmail,@MobileNumber,@DateofBirth,@Status)</value>
+    <value>INSERT INTO Addresses (Id,CustomerId,IsCurrent,HouseNumber,Property,StreetName,Landmark,Town,County,Country,Postcode,Accuracy) VALUES
+           (@Id,@CustomerId,@IsCurrent,@HouseNumber,@Property,@StreetName,@Landmark,@Town,@County,@Country,@Postcode,@Accuracy)</value>
   </data>
   <data name="Delete" xml:space="preserve">
-    <value>DELETE FROM Customers WHERE Id=@Id</value>
+    <value>DELETE FROM Addresses  WHERE CustomerId=@Id</value>
   </data>
-  <data name="GetAll" xml:space="preserve">
-    <value>SELECT Id,Title,Forename,Initials,Surname,Email,MobileNumber,DateofBirth 
-FROM dbo.Customers</value>
+  <data name="DeleteAll" xml:space="preserve">
+    <value>DELETE FROM Addresses CustomerId=@CustomerId</value>
   </data>
-  <data name="GetAllActive" xml:space="preserve">
-    <value>SELECT Id,Title,Forename,Initials,Surname,Email,MobileNumber,DateofBirth 
-FROM dbo.Customers 
-where Status=1</value>
+  <data name="GetAllByCustomer" xml:space="preserve">
+    <value>SELECT Id,CustomerId,IsCurrent,HouseNumber,Property,StreetName,Landmark,Town,County,Country,Postcode
+FROM Addresses
+WHERE CustomerId=@CustomerId</value>
   </data>
-  <data name="GetById" xml:space="preserve">
-    <value>SELECT Id,Title,Forename,Initials,Surname,Email,MobileNumber,DateofBirth 
-FROM dbo.Customers 
-where Id=@Id</value>
+  <data name="MarkAsCurrent" xml:space="preserve">
+    <value>UPDATE Addresses SET IsCurrent = 1  Where Id=@Id</value>
   </data>
-  <data name="MarkAsNull" xml:space="preserve">
-    <value>UPDATE Customers SET Forename='', Initials='', Surname='', Email='',MobileNumber='', DateofBirth=null, Status = -1 WHERE Id = @Id</value>
-  </data>
-  <data name="SetStatus" xml:space="preserve">
-    <value>UPDATE Customers SET Status = @Status WHERE Id = @Id</value>
+  <data name="MarlAllAsNotCurrent" xml:space="preserve">
+    <value>UPDATE Addresses SET IsCurrent =  0 Where CustomerId=@CustomerId and IsCurrent=1</value>
   </data>
 </root>

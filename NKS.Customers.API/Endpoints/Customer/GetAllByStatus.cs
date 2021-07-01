@@ -8,11 +8,11 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace NKS.Customers.API.Endpoints.Customer
 {
-    public class GetAllActive : BaseAsyncEndpoint<List<CustomerResponse>>
+    public class GetAllByStatus : BaseAsyncEndpoint<bool, List<CustomerResponse>>
     {
         private readonly ICustomerRepository _customerRepository;
 
-        public GetAllActive(ICustomerRepository customerRepository)
+        public GetAllByStatus(ICustomerRepository customerRepository)
         {
             _customerRepository = customerRepository;
         }
@@ -25,10 +25,11 @@ namespace NKS.Customers.API.Endpoints.Customer
         [SwaggerOperation(
             Summary = "Returns list of customers",
             Description = "Returns list of customers",
-            OperationId = "Customer.GetAllActive",
+            OperationId = "Customer.GetAll",
             Tags = new[] { "Customers" })
         ]
-        public override async Task<ActionResult<List<CustomerResponse>>> HandleAsync()
+        public override async Task<ActionResult<List<CustomerResponse>>> HandleAsync(
+            [FromQuery(Name = "Active")] bool isActive)
         {
             var response = new List<CustomerResponse>
             {

@@ -14,12 +14,12 @@ namespace NKS.Customers.Infrastructure.Repositories
 
         public CustomerRepository(IDbConnection connection)
         {
-            _connection = connection;
+            _connection = connection ?? throw new ArgumentException("Active connection is required to execute quries.");
         }
 
-        public void Create(Customer customer)
+        public async void CreateAsync(Customer customer)
         {
-            throw new NotImplementedException();
+            await _connection.ExecuteAsync(Queries.Customers.Create, customer);
         }
 
         public async Task<Customer> GetByIdAsync(Guid id)
@@ -35,24 +35,47 @@ namespace NKS.Customers.Infrastructure.Repositories
         }
 
 
-        public Task<List<Customer>> ListAllAsync()
+        public async Task<IEnumerable<Customer>> ListAllAsync()
         {
+            return await _connection.QueryAsync<Customer>(Queries.Customers.GetAll);
+        }
+
+        public async Task<IEnumerable<Customer>> ListAllActiveAsync()
+        {
+            return await _connection.QueryAsync<Customer>(Queries.Customers.GetAllActive);
+        }
+
+        public void ChangeNameAsync(Customer customer)
+        {
+            //example use case
             throw new NotImplementedException();
         }
 
-        public Task<List<Customer>> ListActiveAsync()
+        public async void DeleteAsync(Guid id)
         {
-            throw new NotImplementedException();
+            await _connection.ExecuteAsync(Queries.Customers.Delete,
+                new
+                {
+                    Id = id
+                });
         }
 
-        public Task UpdateAsync<T>(Customer customer)
+        public async void MarkAsActiveAsync(Guid id)
         {
-            throw new NotImplementedException();
+            await _connection.ExecuteAsync(Queries.Customers.SetStatus,
+                new
+                {
+                    Status = 1
+                });
         }
 
-        public Task DeleteAsync(Customer customer)
+        public async void MarkAsNotActiveAsync(Guid id)
         {
-            throw new NotImplementedException();
+            await _connection.ExecuteAsync(Queries.Customers.SetStatus,
+                new
+                {
+                    Status = 0
+                });
         }
     }
 }

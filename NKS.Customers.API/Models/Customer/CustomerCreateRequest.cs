@@ -6,7 +6,6 @@ namespace NKS.Customers.API.Models.Customer
 {
     public class CustomerCreateRequest
     {
-        public Guid   Id    { get; set; }
         public string Title { get; set; }
 
         [Required(ErrorMessage = "Forename is mandatory")]

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Threading.Tasks;
+using Dapper;
 using NKS.Customers.Core.Entities;
 using NKS.Customers.Core.Interfaces;
 
@@ -8,34 +10,52 @@ namespace NKS.Customers.Infrastructure.Repositories
 {
     public class AddressRepository : IAddressRepository
     {
-        public void Create(Customer customer)
+        private readonly IDbConnection _connection;
+
+        public AddressRepository(IDbConnection connection)
         {
-            throw new NotImplementedException();
+            _connection = connection;
         }
 
-        public Task<Customer> GetByIdAsync<T>(Guid id)
+        public async void CreateAsync(Address address)
         {
-            throw new NotImplementedException();
+            await _connection.ExecuteAsync(Queries.Address.Create, address);
         }
 
-        public Task<List<Customer>> ListAllAsync()
+        public async void DeleteAllForCustomerAsync(Guid customerId)
         {
-            throw new NotImplementedException();
+            await _connection.ExecuteAsync(Queries.Address.DeleteAll,
+                new
+                {
+                    CustomerId = customerId
+                });
         }
 
-        public Task<List<Customer>> ListActiveAsync()
+        public async Task<IEnumerable<Address>> GetAllByCustomerIdAsync(Guid customerId)
         {
-            throw new NotImplementedException();
+            return await _connection.QueryAsync<Address>(Queries.Address.GetAllByCustomer,
+                new
+                {
+                    CustomerId = customerId
+                });
         }
 
-        public Task UpdateAsync<T>(Customer customer)
+        public async void MarkAsPrimaryAsync(Guid id)
         {
-            throw new NotImplementedException();
+            await _connection.ExecuteAsync(Queries.Address.MarkAsCurrent,
+                new
+                {
+                    Id = id
+                });
         }
 
-        public Task DeleteAsync(Customer customer)
+        public async void MarkPrimaryToSecondaryAsync(Guid customerId)
         {
-            throw new NotImplementedException();
+            await _connection.ExecuteAsync(Queries.Address.MarlAllAsNotCurrent,
+                new
+                {
+                    CustomerId = customerId
+                });
         }
     }
 }

@@ -7,11 +7,10 @@ namespace NKS.Customers.Core.Interfaces
 {
     public interface IAddressRepository
     {
-        void Create(Customer customer);
-        Task<Customer> GetByIdAsync<T>(Guid id);
-        Task<List<Customer>> ListAllAsync();
-        Task<List<Customer>> ListActiveAsync();
-        Task UpdateAsync<T>(Customer customer);
-        Task DeleteAsync(Customer customer);
+        void CreateAsync(Address address);
+        Task<IEnumerable<Address>> GetAllByCustomerIdAsync(Guid customerId);
+        void MarkPrimaryToSecondaryAsync(Guid customerId);
+        void MarkAsPrimaryAsync(Guid customerId);
+        void DeleteAllForCustomerAsync(Guid customerId);
     }
 }

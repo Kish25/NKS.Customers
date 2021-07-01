@@ -7,11 +7,13 @@ namespace NKS.Customers.Core.Interfaces
 {
     public interface ICustomerRepository
     {
-        void Create(Customer customer);
+        void CreateAsync(Customer customer);
         Task<Customer> GetByIdAsync(Guid id);
-        Task<List<Customer>> ListAllAsync();
-        Task<List<Customer>> ListActiveAsync();
-        Task UpdateAsync<T>(Customer customer);
-        Task DeleteAsync(Customer customer);
+        Task<IEnumerable<Customer>> ListAllAsync();
+        Task<IEnumerable<Customer>> ListAllActiveAsync();
+        void ChangeNameAsync(Customer customer);
+        void DeleteAsync(Guid id);
+        void MarkAsActiveAsync(Guid id);
+        void MarkAsNotActiveAsync(Guid id);
     }
 }

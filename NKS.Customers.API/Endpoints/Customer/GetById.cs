@@ -11,10 +11,10 @@ namespace NKS.Customers.API.Endpoints.Customer
     {
         private readonly ICustomerRepository _customerRepository;
 
-        //public GetById(ICustomerRepository customerRepository)
-        //{
-        //    _customerRepository = customerRepository;
-        //}
+        public GetById(ICustomerRepository customerRepository)
+        {
+            _customerRepository = customerRepository;
+        }
 
         [HttpGet("/Customers/{Id:guid}")]
         [ProducesResponseType(typeof(string), 200)]

@@ -22,14 +22,14 @@ namespace NKS.Customers.Infrastructure.Queries {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Customers {
+    internal class Address {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Customers() {
+        internal Address() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace NKS.Customers.Infrastructure.Queries {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("NKS.Customers.Infrastructure.Queries.Customers", typeof(Customers).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("NKS.Customers.Infrastructure.Queries.Address", typeof(Address).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,17 +61,8 @@ namespace NKS.Customers.Infrastructure.Queries {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to UPDATE Customers SET Forename=@Forename, Initials=@Initials, Surname=@Surname  WHERE Id = @Id.
-        /// </summary>
-        internal static string ChangeName {
-            get {
-                return ResourceManager.GetString("ChangeName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to INSERT INTO dbo.Customers (Id,Title,Forename,Initials,Surname,Email,HashedEmail,MobileNumber,DateofBirth,Status) VALUES
-        ///           (@Id,@Title,@Forename,@Initials,@Surname,@Email,@HashedEmail,@MobileNumber,@DateofBirth,@Status).
+        ///   Looks up a localized string similar to INSERT INTO Addresses (Id,CustomerId,IsCurrent,HouseNumber,Property,StreetName,Landmark,Town,County,Country,Postcode,Accuracy) VALUES
+        ///           (@Id,@CustomerId,@IsCurrent,@HouseNumber,@Property,@StreetName,@Landmark,@Town,@County,@Country,@Postcode,@Accuracy).
         /// </summary>
         internal static string Create {
             get {
@@ -80,7 +71,7 @@ namespace NKS.Customers.Infrastructure.Queries {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to DELETE FROM Customers WHERE Id=@Id.
+        ///   Looks up a localized string similar to DELETE FROM Addresses  WHERE CustomerId=@Id.
         /// </summary>
         internal static string Delete {
             get {
@@ -89,52 +80,40 @@ namespace NKS.Customers.Infrastructure.Queries {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SELECT Id,Title,Forename,Initials,Surname,Email,MobileNumber,DateofBirth 
-        ///FROM dbo.Customers.
+        ///   Looks up a localized string similar to DELETE FROM Addresses CustomerId=@CustomerId.
         /// </summary>
-        internal static string GetAll {
+        internal static string DeleteAll {
             get {
-                return ResourceManager.GetString("GetAll", resourceCulture);
+                return ResourceManager.GetString("DeleteAll", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SELECT Id,Title,Forename,Initials,Surname,Email,MobileNumber,DateofBirth 
-        ///FROM dbo.Customers 
-        ///where Status=1.
+        ///   Looks up a localized string similar to SELECT Id,CustomerId,IsCurrent,HouseNumber,Property,StreetName,Landmark,Town,County,Country,Postcode
+        ///FROM Addresses
+        ///WHERE CustomerId=@CustomerId.
         /// </summary>
-        internal static string GetAllActive {
+        internal static string GetAllByCustomer {
             get {
-                return ResourceManager.GetString("GetAllActive", resourceCulture);
+                return ResourceManager.GetString("GetAllByCustomer", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SELECT Id,Title,Forename,Initials,Surname,Email,MobileNumber,DateofBirth 
-        ///FROM dbo.Customers 
-        ///where Id=@Id.
+        ///   Looks up a localized string similar to UPDATE Addresses SET IsCurrent = 1  Where Id=@Id.
         /// </summary>
-        internal static string GetById {
+        internal static string MarkAsCurrent {
             get {
-                return ResourceManager.GetString("GetById", resourceCulture);
+                return ResourceManager.GetString("MarkAsCurrent", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to UPDATE Customers SET Forename=&apos;&apos;, Initials=&apos;&apos;, Surname=&apos;&apos;, Email=&apos;&apos;,MobileNumber=&apos;&apos;, DateofBirth=null, Status = -1 WHERE Id = @Id.
+        ///   Looks up a localized string similar to UPDATE Addresses SET IsCurrent =  0 Where CustomerId=@CustomerId and IsCurrent=1.
         /// </summary>
-        internal static string MarkAsNull {
+        internal static string MarlAllAsNotCurrent {
             get {
-                return ResourceManager.GetString("MarkAsNull", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to UPDATE Customers SET Status = @Status WHERE Id = @Id.
-        /// </summary>
-        internal static string SetStatus {
-            get {
-                return ResourceManager.GetString("SetStatus", resourceCulture);
+                return ResourceManager.GetString("MarlAllAsNotCurrent", resourceCulture);
             }
         }
     }

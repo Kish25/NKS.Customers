@@ -2,12 +2,20 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using NKS.Customers.API.Models.Customer;
+using NKS.Customers.Core.Interfaces;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace NKS.Customers.API.Endpoints.Customer
 {
     public class MarkAsInactive : BaseAsyncEndpoint<Guid, CustomerResponse>
     {
+        private readonly ICustomerRepository _customerRepository;
+
+        public MarkAsInactive(ICustomerRepository customerRepository)
+        {
+            _customerRepository = customerRepository;
+        }
+
         [HttpPut("/Customers/{Id:guid}/Deactivate")]
         [ProducesResponseType(typeof(string), 200)]
         [ProducesResponseType(typeof(string), 400)]

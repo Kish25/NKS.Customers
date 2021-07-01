@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NKS.Customers.API.Configuration;
+using NKS.Customers.API.Handlers;
 using NKS.Customers.Core.Configuration;
 using NKS.Customers.Infrastructure.Configuration;
 using Serilog;
@@ -40,6 +41,7 @@ namespace NKS.Customers.API
 
             if (env.IsDevelopment()) app.UseDeveloperExceptionPage();
 
+            app.UseErrorHandler();
             app.UseSwagger();
             app.UseSwaggerUI(c =>
                 c.SwaggerEndpoint($"/swagger/v{swaggerConfig.Version}/swagger.json", "NKS.Customers.API v1"));

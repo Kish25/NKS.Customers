@@ -15,6 +15,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Queries\Address.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Address.resx</DependentUpon>
+    </Compile>
     <Compile Update="Queries\Customers.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -23,6 +28,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Queries\Address.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Address.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="Queries\Customers.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Customers.Designer.cs</LastGenOutput>
