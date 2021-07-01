@@ -10,6 +10,7 @@ namespace NKS.Customers.Infrastructure.Configuration
         {
             return services
                 .AddTransient<ICustomerRepository, CustomerRepository>()
+                .AddTransient<IAddressRepository, AddressRepository>()
                 .AddSqlServer(sqlConnectionString);
         }
     }

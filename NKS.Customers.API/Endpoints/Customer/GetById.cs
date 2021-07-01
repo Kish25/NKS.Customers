@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using NKS.Customers.API.Extensions;
 using NKS.Customers.API.Models.Customer;
 using NKS.Customers.Core.Interfaces;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace NKS.Customers.API.Endpoints.Customer
 {
-    public class GetById : BaseAsyncEndpoint<Guid, CustomerResponse>
+    public class GetById : BaseAsyncEndpoint<string, CustomerResponse>
     {
         private readonly ICustomerRepository _customerRepository;
 
@@ -16,8 +17,9 @@ namespace NKS.Customers.API.Endpoints.Customer
             _customerRepository = customerRepository;
         }
 
-        [HttpGet("/Customers/{Id:guid}")]
-        [ProducesResponseType(typeof(string), 200)]
+        [HttpGet]
+        [Route("/Customers/{id}")]
+        [ProducesResponseType(typeof(CustomerResponse), 200)]
         [ProducesResponseType(typeof(string), 204)]
         [ProducesResponseType(typeof(string), 400)]
         [ProducesResponseType(typeof(string), 404)]
@@ -27,11 +29,18 @@ namespace NKS.Customers.API.Endpoints.Customer
             OperationId = "Customers.GetByid",
             Tags = new[] { "Customers" })
         ]
-        public override async Task<ActionResult<CustomerResponse>> HandleAsync(Guid id)
+        public override async Task<ActionResult<CustomerResponse>> HandleAsync(string id)
         {
-            // var coreCustomer = _customerRepository.GetByIdAsync(request.Id);
+            if (id.HasValue())
+                return BadRequest("Customer Id is required.");
 
-            return Ok();
+            var customerId = Guid.Parse(id);
+
+            var coreCustomer = await _customerRepository.GetByIdAsync(customerId);
+            if (coreCustomer is null)
+                return NotFound("Customer does not exist.");
+
+            return Ok(CustomerResponse.FromDomainEntity(coreCustomer));
         }
     }
 }

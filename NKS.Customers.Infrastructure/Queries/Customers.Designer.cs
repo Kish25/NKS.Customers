@@ -101,11 +101,11 @@ namespace NKS.Customers.Infrastructure.Queries {
         /// <summary>
         ///   Looks up a localized string similar to SELECT Id,Title,Forename,Initials,Surname,Email,MobileNumber,DateofBirth 
         ///FROM dbo.Customers 
-        ///where Status=1.
+        ///where Status=@status.
         /// </summary>
-        internal static string GetAllActive {
+        internal static string GetAllByStatus {
             get {
-                return ResourceManager.GetString("GetAllActive", resourceCulture);
+                return ResourceManager.GetString("GetAllByStatus", resourceCulture);
             }
         }
         

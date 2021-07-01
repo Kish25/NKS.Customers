@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using NKS.Customers.API.Models.Customer;
@@ -17,27 +16,27 @@ namespace NKS.Customers.API.Endpoints.Customer
             _customerRepository = customerRepository;
         }
 
-        [HttpGet("/Customers/{Active:bool}")]
-        [ProducesResponseType(typeof(string), 200)]
+        [HttpGet("/Customers")]
+        [ProducesResponseType(typeof(CustomerResponse), 200)]
         [ProducesResponseType(typeof(string), 204)]
         [ProducesResponseType(typeof(string), 400)]
         [ProducesResponseType(typeof(string), 404)]
         [SwaggerOperation(
-            Summary = "Returns list of customers",
-            Description = "Returns list of customers",
-            OperationId = "Customer.GetAll",
+            Summary = "Returns list of customers for given status",
+            Description = "Returns either all or active customers .",
+            OperationId = "Customer.GetAllByStatus",
             Tags = new[] { "Customers" })
         ]
         public override async Task<ActionResult<List<CustomerResponse>>> HandleAsync(
             [FromQuery(Name = "Active")] bool isActive)
         {
-            var response = new List<CustomerResponse>
-            {
-                new() { Id = Guid.NewGuid() },
-                new() { Id = Guid.NewGuid() }
-            };
+            IEnumerable<Core.Entities.Customer> customers = new List<Core.Entities.Customer>();
 
-            return Ok(response);
+
+            customers = await _customerRepository.ListAllByStatusAsync(isActive);
+            var result = CustomerResponse.FromDomainEntity(customers);
+
+            return Ok(result);
         }
     }
 }

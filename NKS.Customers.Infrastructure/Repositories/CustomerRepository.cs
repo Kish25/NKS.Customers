@@ -17,9 +17,17 @@ namespace NKS.Customers.Infrastructure.Repositories
             _connection = connection ?? throw new ArgumentException("Active connection is required to execute quries.");
         }
 
-        public async void CreateAsync(Customer customer)
+        public async Task CreateAsync(Customer customer)
         {
-            await _connection.ExecuteAsync(Queries.Customers.Create, customer);
+            try
+            {
+                await _connection.ExecuteAsync(Queries.Customers.Create, customer);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
 
         public async Task<Customer> GetByIdAsync(Guid id)
@@ -35,23 +43,24 @@ namespace NKS.Customers.Infrastructure.Repositories
         }
 
 
-        public async Task<IEnumerable<Customer>> ListAllAsync()
+        public async Task<IEnumerable<Customer>> ListAllByStatusAsync(bool status)
         {
+            if (status)
+                return await _connection.QueryAsync<Customer>(Queries.Customers.GetAllByStatus,
+                    new
+                    {
+                        Status = status
+                    });
             return await _connection.QueryAsync<Customer>(Queries.Customers.GetAll);
         }
 
-        public async Task<IEnumerable<Customer>> ListAllActiveAsync()
-        {
-            return await _connection.QueryAsync<Customer>(Queries.Customers.GetAllActive);
-        }
-
-        public void ChangeNameAsync(Customer customer)
+        public Task ChangeNameAsync(Customer customer)
         {
             //example use case
             throw new NotImplementedException();
         }
 
-        public async void DeleteAsync(Guid id)
+        public async Task DeleteAsync(Guid id)
         {
             await _connection.ExecuteAsync(Queries.Customers.Delete,
                 new
@@ -60,7 +69,7 @@ namespace NKS.Customers.Infrastructure.Repositories
                 });
         }
 
-        public async void MarkAsActiveAsync(Guid id)
+        public async Task MarkAsActiveAsync(Guid id)
         {
             await _connection.ExecuteAsync(Queries.Customers.SetStatus,
                 new
@@ -69,12 +78,21 @@ namespace NKS.Customers.Infrastructure.Repositories
                 });
         }
 
-        public async void MarkAsNotActiveAsync(Guid id)
+        public async Task MarkAsNotActiveAsync(Guid id)
         {
             await _connection.ExecuteAsync(Queries.Customers.SetStatus,
                 new
                 {
                     Status = 0
+                });
+        }
+
+        public async Task MarkAsDeletedAsync(Guid id)
+        {
+            await _connection.ExecuteAsync(Queries.Customers.MarkAsNull,
+                new
+                {
+                    Id = id
                 });
         }
     }

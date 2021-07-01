@@ -131,10 +131,10 @@
     <value>SELECT Id,Title,Forename,Initials,Surname,Email,MobileNumber,DateofBirth 
 FROM dbo.Customers</value>
   </data>
-  <data name="GetAllActive" xml:space="preserve">
+  <data name="GetAllByStatus" xml:space="preserve">
     <value>SELECT Id,Title,Forename,Initials,Surname,Email,MobileNumber,DateofBirth 
 FROM dbo.Customers 
-where Status=1</value>
+where Status=@status</value>
   </data>
   <data name="GetById" xml:space="preserve">
     <value>SELECT Id,Title,Forename,Initials,Surname,Email,MobileNumber,DateofBirth 

@@ -17,12 +17,7 @@ namespace NKS.Customers.Infrastructure.Repositories
             _connection = connection;
         }
 
-        public async void CreateAsync(Address address)
-        {
-            await _connection.ExecuteAsync(Queries.Address.Create, address);
-        }
-
-        public async void DeleteAllForCustomerAsync(Guid customerId)
+        public async Task DeleteAllForCustomerAsync(Guid customerId)
         {
             await _connection.ExecuteAsync(Queries.Address.DeleteAll,
                 new
@@ -31,16 +26,7 @@ namespace NKS.Customers.Infrastructure.Repositories
                 });
         }
 
-        public async Task<IEnumerable<Address>> GetAllByCustomerIdAsync(Guid customerId)
-        {
-            return await _connection.QueryAsync<Address>(Queries.Address.GetAllByCustomer,
-                new
-                {
-                    CustomerId = customerId
-                });
-        }
-
-        public async void MarkAsPrimaryAsync(Guid id)
+        public async Task MarkAsPrimaryAsync(Guid id)
         {
             await _connection.ExecuteAsync(Queries.Address.MarkAsCurrent,
                 new
@@ -49,9 +35,31 @@ namespace NKS.Customers.Infrastructure.Repositories
                 });
         }
 
-        public async void MarkPrimaryToSecondaryAsync(Guid customerId)
+        public async Task MarkPrimaryToSecondaryAsync(Guid customerId)
         {
             await _connection.ExecuteAsync(Queries.Address.MarlAllAsNotCurrent,
+                new
+                {
+                    CustomerId = customerId
+                });
+        }
+
+        public async Task CreateAsync(Address address)
+        {
+            try
+            {
+                await _connection.ExecuteAsync(Queries.Address.Create, address);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+
+        public async Task<IEnumerable<Address>> GetAllByCustomerIdAsync(Guid customerId)
+        {
+            return await _connection.QueryAsync<Address>(Queries.Address.GetAllByCustomer,
                 new
                 {
                     CustomerId = customerId

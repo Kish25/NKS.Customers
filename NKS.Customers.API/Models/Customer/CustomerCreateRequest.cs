@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace NKS.Customers.API.Models.Customer
@@ -10,6 +9,8 @@ namespace NKS.Customers.API.Models.Customer
 
         [Required(ErrorMessage = "Forename is mandatory")]
         public string Forename { get; set; }
+
+        public string Initials { get; set; }
 
         [Required(ErrorMessage = "Surname is mandatory")]
         public string Surname { get; set; }
@@ -22,8 +23,15 @@ namespace NKS.Customers.API.Models.Customer
         [Required(ErrorMessage = "Email address is required")]
         public string EmailAddress { get; set; }
 
-        public string        Status  { get; set; }
+        public int Status { get; set; }
 
-        public List<Address> Address { get; set; }
+        [Required] public string Address1  { get; set; }
+        public            string Address2  { get; set; }
+        public            string Address3  { get; set; }
+        public            string Town      { get; set; }
+        public            string County    { get; set; }
+        public            string Country   { get; set; }
+        [Required] public string Postcode  { get; set; }
+        public            bool   IsCurrent { get; set; }
     }
 }

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace NKS.Customers.API.Models.Customer
 {
-    public class Address
+    public class AddressDto
     {
         public            Guid   Id         { get; set; }
         public            Guid   CustomerId { get; set; }

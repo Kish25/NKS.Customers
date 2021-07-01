@@ -61,8 +61,8 @@ namespace NKS.Customers.Infrastructure.Queries {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to INSERT INTO Addresses (Id,CustomerId,IsCurrent,HouseNumber,Property,StreetName,Landmark,Town,County,Country,Postcode,Accuracy) VALUES
-        ///           (@Id,@CustomerId,@IsCurrent,@HouseNumber,@Property,@StreetName,@Landmark,@Town,@County,@Country,@Postcode,@Accuracy).
+        ///   Looks up a localized string similar to INSERT INTO Addresses (Id,CustomerId,IsCurrent,Address1,Address2,Address3,Town,County,Country,Postcode)
+        ///     VALUES (@Id,@CustomerId,@IsCurrent,@Address1,@Address2,@Address3,@Town,@County,@Country,@Postcode).
         /// </summary>
         internal static string Create {
             get {
@@ -71,7 +71,7 @@ namespace NKS.Customers.Infrastructure.Queries {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to DELETE FROM Addresses  WHERE CustomerId=@Id.
+        ///   Looks up a localized string similar to DELETE FROM Addresses  WHERE Id=@Id.
         /// </summary>
         internal static string Delete {
             get {
@@ -89,9 +89,7 @@ namespace NKS.Customers.Infrastructure.Queries {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SELECT Id,CustomerId,IsCurrent,HouseNumber,Property,StreetName,Landmark,Town,County,Country,Postcode
-        ///FROM Addresses
-        ///WHERE CustomerId=@CustomerId.
+        ///   Looks up a localized string similar to SELECT Id,CustomerId,IsCurrent,Address1,Address2,Address3,Town,County,Country,Postcode FROM Addresses.
         /// </summary>
         internal static string GetAllByCustomer {
             get {

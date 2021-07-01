@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using NKS.Customers.API.Models.Customer;
+using NKS.Customers.Core.Entities;
 using NKS.Customers.Core.Interfaces;
 using Swashbuckle.AspNetCore.Annotations;
 

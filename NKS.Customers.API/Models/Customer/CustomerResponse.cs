@@ -25,12 +25,11 @@ namespace NKS.Customers.API.Models.Customer
                 Surname = customer.Surname,
                 DateofBirth = customer.DateOfBirth,
                 EmailAddress = customer.Email,
-                MobileNumber = customer.MobileNumber,
-                Address = customer.Address
+                MobileNumber = customer.MobileNumber
             };
         }
 
-        public static List<CustomerResponse> FromDomainEntity(List<DomainEntity.Customer> customers)
+        public static List<CustomerResponse> FromDomainEntity(IEnumerable<DomainEntity.Customer> customers)
         {
             var response = new List<CustomerResponse>();
             foreach (var customer in customers) response.Add(FromDomainEntity(customer));

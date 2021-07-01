@@ -118,19 +118,17 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Create" xml:space="preserve">
-    <value>INSERT INTO Addresses (Id,CustomerId,IsCurrent,HouseNumber,Property,StreetName,Landmark,Town,County,Country,Postcode,Accuracy) VALUES
-           (@Id,@CustomerId,@IsCurrent,@HouseNumber,@Property,@StreetName,@Landmark,@Town,@County,@Country,@Postcode,@Accuracy)</value>
+    <value>INSERT INTO Addresses (Id,CustomerId,IsCurrent,Address1,Address2,Address3,Town,County,Country,Postcode)
+     VALUES (@Id,@CustomerId,@IsCurrent,@Address1,@Address2,@Address3,@Town,@County,@Country,@Postcode)</value>
   </data>
   <data name="Delete" xml:space="preserve">
-    <value>DELETE FROM Addresses  WHERE CustomerId=@Id</value>
+    <value>DELETE FROM Addresses  WHERE Id=@Id</value>
   </data>
   <data name="DeleteAll" xml:space="preserve">
     <value>DELETE FROM Addresses CustomerId=@CustomerId</value>
   </data>
   <data name="GetAllByCustomer" xml:space="preserve">
-    <value>SELECT Id,CustomerId,IsCurrent,HouseNumber,Property,StreetName,Landmark,Town,County,Country,Postcode
-FROM Addresses
-WHERE CustomerId=@CustomerId</value>
+    <value>SELECT Id,CustomerId,IsCurrent,Address1,Address2,Address3,Town,County,Country,Postcode FROM Addresses</value>
   </data>
   <data name="MarkAsCurrent" xml:space="preserve">
     <value>UPDATE Addresses SET IsCurrent = 1  Where Id=@Id</value>
